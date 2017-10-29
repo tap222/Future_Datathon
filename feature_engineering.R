@@ -13,6 +13,13 @@ products<-products %>% group_by(trans_year) %>% mutate(trans_year_sum = sum(sale
 products<-products %>% group_by(DOB_year) %>% mutate(DOB_year_sum = sum(sale_price_after_promo))
 products$trans_month<- month(products$transactionDate)
 
+##age
+age <- function(dob, age.day = today(), units = "years", floor = TRUE) {
+    calc.age = new_interval(dob, age.day) / duration(num = 1, units = units)
+    if (floor) return(as.integer(floor(calc.age)))
+    return(calc.age)
+}
+
 
 
 
